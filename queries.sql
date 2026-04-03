@@ -1,8 +1,8 @@
 SELECT 
     SUM(qte * prix) AS chiffre_d_affaires,
-    SUM(CASE WHEN produit = 'Produit A' THEN qte ELSE 0 END) AS ventes_produit_a,
-    SUM(CASE WHEN produit = 'Produit B' THEN qte ELSE 0 END) AS ventes_produit_b,
-    SUM(CASE WHEN produit = 'Produit C' THEN qte ELSE 0 END) AS ventes_produit_c,
-    SUM(CASE WHEN region = 'Nord' THEN qte ELSE 0 END) AS ventes_nord,
-    SUM(CASE WHEN region = 'Sud' THEN qte ELSE 0 END) AS ventes_sud
+    SUM(qte) FILTER (WHERE produit = 'Produit A') AS ventes_produit_a,
+    SUM(qte) FILTER (WHERE produit = 'Produit B') AS ventes_produit_b,
+    SUM(qte) FILTER (WHERE produit = 'Produit C') AS ventes_produit_c,
+    SUM(qte) FILTER (WHERE region = 'Nord') AS ventes_nord,
+    SUM(qte) FILTER (WHERE region = 'Sud') AS ventes_sud
 FROM ventes;
